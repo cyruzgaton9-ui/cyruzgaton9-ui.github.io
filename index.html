@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Simple Linear Regression Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="eyebrow">Statistics study tool</div>
+        <h1>Simple Linear Regression</h1>
+        <p class="lead">Explore how X and Y move together, fit a line, and see each step behind the result. Your data stays in this browser.</p>
+      </header>
+      <section aria-labelledby="data-title">
+        <div class="row between">
+          <div>
+            <h2 id="data-title">1. Enter your paired data</h2>
+            <p class="hint">Each row is one (X, Y) pair. Enter numbers only.</p>
+          </div>
+          <label>Decimal places <select id="precision" aria-label="Decimal places">
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>8</option>
+            </select>
+          </label>
+        </div>
+        <div class="row names">
+          <label>X variable name <input type="text" id="xName" placeholder="e.g. hours studied" autocomplete="off"></label>
+          <label>Y variable name <input type="text" id="yName" placeholder="e.g. exam score" autocomplete="off"></label>
+        </div>
+        <div class="table-wrap">
+          <table class="input-table">
+            <thead>
+              <tr>
+                <th scope="col">Pair</th>
+                <th scope="col">X</th>
+                <th scope="col">Y</th>
+                <th scope="col">
+                  <span class="sr-only">Delete</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="inputRows">
+            </tbody>
+          </table>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button id="addRow">＋ Add row</button>
+          <button id="loadExample">Load example</button>
+          <button id="clearAll">Clear all</button>
+        </div>
+        <p id="validation" aria-live="polite">
+        </p>
+        <h3 style="margin-top:20px">Paste a column or pairs</h3>
+        <p class="hint">Paste two spreadsheet columns or enter one pair per line, separated by commas, tabs, or spaces.</p>
+        <textarea class="paste" id="pasteData" aria-label="Paste data" placeholder="1, 2&#10;2, 4&#10;3, 5">
+        </textarea>
+        <div class="row" style="margin-top:8px">
+          <button id="importPaste">Use pasted data</button>
+        </div>
+      </section>
+      <div id="results" aria-live="polite">
+      </div>
+      <section>
+        <h2>How to use</h2>
+        <ol>
+          <li>Enter matching X and Y values, or paste two columns of data.</li>
+          <li>Review the highlighted cells if validation finds a problem.</li>
+          <li>Read the fitted line, tables, plots, and statistics below. Use “Show the solution” to follow the arithmetic.</li>
+          <li>Enter an X value to estimate its Y value. Predictions beyond the observed X range are extrapolations.</li>
+        </ol>
+        <details>
+          <summary>Formulas reference</summary>
+          <p class="formula">Sxx = Σx² − (Σx)²/n; Syy = Σy² − (Σy)²/n; Sxy = Σxy − (ΣxΣy)/n</p>
+          <p class="formula">Bxy = Sxy/Sxx; Ayx = ȳ − Bxy·x̄; ŷ = Ayx + Bxy·x</p>
+          <p class="formula">r = Sxy/√(Sxx·Syy); r² = r·r; Sy.x = √(SSE/(n−2))</p>
+          <p class="formula">Byx = Sxy/Syy; Axy = x̄ − Byx·ȳ</p>
+          <p>Covariance shown here is the sample covariance, Sxy/(n−1). Sy.x is defined only for three or more pairs.</p>
+        </details>
+      </section>
+      <footer>All calculations happen locally in this browser. No data is uploaded, stored, or sent anywhere.</footer>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
